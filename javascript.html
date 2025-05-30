@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JavaScript – Linguagens</title>
+  <link rel="stylesheet" href="index.css"/>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
+</head>
+<body>
+  <header>
+    <div class="settings-container">
+      <button class="settings-button" aria-label="Abrir menu de configurações">
+        <i class="bi bi-gear-fill"></i>
+      </button>
+      <div class="settings-menu">
+        <button id="theme-toggle">Tema Escuro</button>
+      </div>
+    </div>
+
+    <section class="top-header">
+      <div class="interface">
+        <div class="logotipo">
+          <a href="index.html">
+            <img src="imagens/IFSC_horizontal_marca2015_PNG (1) - Editado.png" alt="Logotipo do site">
+          </a>
+        </div>
+        <div class="social-links">
+          <a href="#"><button><i class="bi bi-instagram"></i></button></a>
+          <a href="#"><button><i class="bi bi-whatsapp"></i></button></a>
+          <a href="#"><button><i class="bi bi-facebook"></i></button></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="bottom-header">
+      <div class="interface">
+        <nav class="menu">
+          <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="sobre.html">SOBRE NÓS</a></li>
+            <li class="drop-hover">
+              <a href="#">LINGUAGENS <i class="bi bi-caret-down-fill"></i></a>
+              <div class="drop">
+                <a href="html.html">HTML</a>
+                <a href="css.html">CSS</a>
+                <a href="python.html">PYTHON</a>
+                <a href="javascript.html" class="active">JAVASCRIPT</a>
+                <a href="java.html">JAVA</a>
+                <a href="brainfuck.html">BRAINFUCK</a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </section>
+  </header>
+
+  <main class="interface" style="padding: 40px 4%;">
+    <section class="language-info">
+      <img src="imagens/javascripted.png" alt="Logo JavaScript" class="language-logo" >
+      <h1>JavaScript</h1>
+      <p>JavaScript é uma linguagem de programação interpretada, muito usada para desenvolvimento web. Permite criar páginas interativas, controlar elementos e se comunicar com servidores.</p>
+      <h2>Principais usos</h2>
+      <ul>
+        <li>Interatividade em páginas web</li>
+        <li>Desenvolvimento front-end</li>
+        <li>Aplicações back-end com Node.js</li>
+        <li>Desenvolvimento de apps móveis e desktop</li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    <h1>©2025 By DavidjGreens & Enzo Brancher</h1>
+  </footer>
+
+  <script src="https://kit.fontawesome.com/0b6d1a1fba.js" crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const settingsContainer = document.querySelector('.settings-container');
+      const settingsButton = document.querySelector('.settings-button');
+      const settingsMenu = document.querySelector('.settings-menu');
+      const themeToggle = document.getElementById('theme-toggle');
+      const body = document.body;
+
+      let isMenuOpen = false;
+      let isDarkMode = false;
+
+      settingsButton.addEventListener('click', () => {
+        isMenuOpen = !isMenuOpen;
+        settingsMenu.classList.toggle('open');
+        settingsButton.classList.toggle('active', isMenuOpen);
+      });
+
+      themeToggle.addEventListener('click', () => {
+        isDarkMode = !isDarkMode;
+        body.classList.toggle('dark-mode', isDarkMode);
+        themeToggle.textContent = isDarkMode ? 'Tema Claro' : 'Tema Escuro';
+        localStorage.setItem('darkModeEnabled', isDarkMode);
+      });
+
+      (function loadThemePreference() {
+        const savedTheme = localStorage.getItem('darkModeEnabled');
+        if (savedTheme !== null) {
+          isDarkMode = savedTheme === 'true';
+          body.classList.toggle('dark-mode', isDarkMode);
+          themeToggle.textContent = isDarkMode ? 'Tema Claro' : 'Tema Escuro';
+        }
+      })();
+
+      document.addEventListener('click', event => {
+        if (settingsContainer && !settingsContainer.contains(event.target) && isMenuOpen) {
+          settingsMenu.classList.remove('open');
+          settingsButton.classList.remove('active');
+          isMenuOpen = false;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
