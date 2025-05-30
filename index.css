@@ -12,6 +12,13 @@ body {
     color: #333;
 }
 
+body.coquette-mode {
+    background-color: #ffd9ec;
+    color: #5e004d;
+    background-image: url("imagens/fundo-coquette.png");
+    background-repeat: repeat;
+}
+
 .interface {
     max-width: 1280px;
     margin: 0 auto;
@@ -22,12 +29,21 @@ header {
     background-color: #424147;
 }
 
-footer{
+body.coquette-mode header {
+    background-color: #ffaad4;
+}
+
+footer {
     background-color: #49b146;
-    font-family:cursive;
+    font-family: cursive;
     font-size: 10px;
     padding: 20px;
     text-align: center;
+}
+
+body.coquette-mode footer {
+    background-color: #ffa6d1;
+    color: #5e004d;
 }
 
 .top-header {
@@ -55,10 +71,21 @@ footer{
     color: white;
 }
 
+body.coquette-mode .top-header .social-links button {
+    border-color: #ffaad4;
+    color: #5e004d;
+}
+
 .top-header .social-links button:hover {
     background-color: #49b146;
     border-color: #49b146;
     color: #424147;
+}
+
+body.coquette-mode .top-header .social-links button:hover {
+    background-color: #ffc1e3;
+    border-color: #ffc1e3;
+    color: #5e004d;
 }
 
 .bottom-header nav ul {
@@ -83,6 +110,16 @@ footer{
     box-shadow: inset 0 0 8px #0000008a;
 }
 
+body.coquette-mode .bottom-header nav ul li a {
+    color: #5e004d;
+}
+
+body.coquette-mode .bottom-header nav ul li a:hover {
+    background-color: #ffc1e3;
+    color: #fff0f6;
+    box-shadow: inset 0 0 8px #a20063;
+}
+
 .drop-hover {
     position: relative;
 }
@@ -98,7 +135,10 @@ footer{
     z-index: 10;
 }
 
-/* Mostra o menu quando passa o mouse */
+body.coquette-mode .drop-hover .drop {
+    background-color: #ffd1ec;
+}
+
 .drop-hover:hover .drop {
     display: block;
 }
@@ -111,12 +151,20 @@ footer{
     transition: .3s;
 }
 
+body.coquette-mode .drop-hover .drop a {
+    color: #5e004d;
+}
+
 .drop-hover .drop a:hover {
     background-color: #49b146;
     color: #424147;
 }
 
-/* Scroll estilizado */
+body.coquette-mode .drop-hover .drop a:hover {
+    background-color: #ffa6d1;
+    color: #fff0f6;
+}
+
 .drop-hover .drop::-webkit-scrollbar {
     width: 8px;
 }
@@ -131,12 +179,19 @@ footer{
     border: 2px solid #5f5e64;
 }
 
+body.coquette-mode .drop-hover .drop::-webkit-scrollbar-thumb {
+    background-color: #ffa6d1;
+    border-color: #ffd1ec;
+}
+
 .drop-hover .drop {
     scrollbar-color: #49b146 #5f5e64;
     scrollbar-width: thin;
 }
 
-/* --- ESTILOS DA ENGENAGEM E TEMA CLARO/ESCURO --- */
+body.coquette-mode .drop-hover .drop {
+    scrollbar-color: #ffa6d1 #ffd1ec;
+}
 
 .settings-container {
     position: absolute;
@@ -157,8 +212,16 @@ footer{
     display: block;
 }
 
+body.coquette-mode .settings-button {
+    color: #5e004d;
+}
+
 .settings-button:hover {
     color: #49b146;
+}
+
+body.coquette-mode .settings-button:hover {
+    color: #ffa6d1;
 }
 
 .settings-button.active {
@@ -184,6 +247,11 @@ footer{
     transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
 }
 
+body.coquette-mode .settings-menu {
+    background-color: #ffd1ec;
+    border-color: #ffa6d1;
+}
+
 .settings-menu.open {
     display: flex;
     opacity: 1;
@@ -204,12 +272,19 @@ footer{
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+body.coquette-mode .settings-menu button {
+    color: #5e004d;
+}
+
 .settings-menu button:hover {
     background-color: #49b146;
     color: #424147;
 }
 
-/* --- Tema Escuro --- */
+body.coquette-mode .settings-menu button:hover {
+    background-color: #ffa6d1;
+    color: #fff0f6;
+}
 
 body.dark-mode {
     background-color: #222;
@@ -276,18 +351,11 @@ body.dark-mode .settings-menu button:hover {
     color: #eee;
 }
 
-body.dark-mode .settings-b{
-
-    
-
-}
-/* Transições */
 body,
 body * {
     transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease, transform 0.5s ease;
 }
 
-/* --- Novos estilos para a seção da linguagem --- */
 .language-info {
     max-width: 800px;
     margin: 40px auto 60px auto;
@@ -299,7 +367,13 @@ body * {
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-section.language-info img{
+body.coquette-mode .language-info {
+    background-color: #ffaad4;
+    color: #5e004d;
+    box-shadow: 0 5px 15px rgba(255, 0, 128, 0.3);
+}
+
+section.language-info img {
     display: inline-flex;
     background-color: #929292 ; 
     height: 230px;
@@ -309,6 +383,10 @@ section.language-info img{
     border-radius: 12px;
 }
 
+body.coquette-mode section.language-info img {
+    background-color: #fff0f6;
+    border: 2px dashed #ff87c2;
+}
 
 .language-info h1 {
     font-weight: 700;
