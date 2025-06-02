@@ -1,11 +1,13 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HTML – Linguagens</title>
+  <title>Python – Linguagens</title>
   <link rel="stylesheet" href="index.css"/>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
 </head>
 <body>
@@ -17,6 +19,7 @@
   </div>
 </div> 
   <header>
+    <!-- Botão de configurações / tema -->
     <div class="settings-container">
       <button class="settings-button" aria-label="Abrir menu de configurações">
         <i class="bi bi-gear-fill"></i>
@@ -26,6 +29,7 @@
       </div>
     </div>
 
+    <!-- Top Header (logo + sociais) -->
     <section class="top-header">
       <div class="interface">
         <div class="logotipo">
@@ -41,6 +45,7 @@
       </div>
     </section>
 
+    <!-- Bottom Header (menu) -->
     <section class="bottom-header">
       <div class="interface">
         <nav class="menu">
@@ -51,7 +56,7 @@
             <li class="drop-hover">
               <a href="#">LINGUAGENS <i class="bi bi-caret-down-fill"></i></a>
               <div class="drop">
-                <a href="html.html" class="active">HTML</a>
+                <a href="html.html">HTML</a>
                 <a href="css.html">CSS</a>
                 <a href="javascript.html">JAVASCRIPT</a>
                 <a href="python.html">PYTHON</a>
@@ -65,24 +70,27 @@
     </section>
   </header>
 
+  <!-- Conteúdo Principal -->
   <main class="interface" style="padding: 40px 4%;">
     <section class="language-info">
-      <img src="imagens/html.png" alt="Logo HTML" class="language-logo" >
-      <h1>HTML</h1>
-      <p>HTML (HyperText Markup Language) é a linguagem padrão para criar páginas e aplicações na web. Ela estrutura o conteúdo e define a semântica de textos, imagens e outros elementos na internet.</p>
-      <h2>Principais usos</h2>
-      <ul>
-        <li>Estruturação de páginas web</li>
-        <li>Inserção de textos, imagens e vídeos</li>
-        <li>Criação de formulários e links</li>
-        <li>Base para CSS e JavaScript</li>
-      </ul>
+      <img src="imagens/engines.gif" alt="Logo Engines Geral" class="language-logo" >
+        <h1>Engines</h1>
+        <p>Um engine de jogos, ou motor de jogos, é um software que proporciona uma estrutura e conjunto de ferramentas para o desenvolvimento de jogos de computador. Estas engines permitem aos desenvolvedores criar jogos de forma mais rápida e eficiente, fornecendo funcionalidades pré-construídas para gráficos, áudio, física, animação, inteligência artificial, entre outros. </p>
+        <h2>Principais ambientes de uso</h2>
+        <ul> 
+          <li>Automação de tarefas</li>
+          <li>Desenvolvimento Web (Django, Flask)</li>
+          <li>Ciência de dados e análise estatística</li>
+          <li>Machine Learning e IA</li>
+          <li>Aplicações desktop e scripts diversos</li>
+        </ul>
     </section>
   </main>
   <footer>
     <h1>©2025 By DavidjGreens & Enzo Brancher</h1>
-  </footer>
+</footer>
 
+  <!-- Fontes de ícones e script de tema -->
   <script src="https://kit.fontawesome.com/0b6d1a1fba.js" crossorigin="anonymous"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -95,12 +103,14 @@
       let isMenuOpen = false;
       let isDarkMode = false;
 
+      // Alterna menu de configurações
       settingsButton.addEventListener('click', () => {
         isMenuOpen = !isMenuOpen;
         settingsMenu.classList.toggle('open');
         settingsButton.classList.toggle('active', isMenuOpen);
       });
 
+      // Alterna tema e salva preferência
       themeToggle.addEventListener('click', () => {
         isDarkMode = !isDarkMode;
         body.classList.toggle('dark-mode', isDarkMode);
@@ -108,6 +118,7 @@
         localStorage.setItem('darkModeEnabled', isDarkMode);
       });
 
+      // Carrega preferência de tema ao iniciar
       (function loadThemePreference() {
         const savedTheme = localStorage.getItem('darkModeEnabled');
         if (savedTheme !== null) {
@@ -117,6 +128,7 @@
         }
       })();
 
+      // Fecha menu de configurações ao clicar fora
       document.addEventListener('click', event => {
         if (settingsContainer && !settingsContainer.contains(event.target) && isMenuOpen) {
           settingsMenu.classList.remove('open');
