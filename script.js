@@ -123,3 +123,22 @@ document.addEventListener('DOMContentLoaded', () => {
 // Adicione este script no final do seu arquivo, caso já não tenha.
 // Ele é para o VLibras, não relacionado ao tema, mas é bom manter junto.
 // new window.VLibras.Widget('https://vlibras.gov.br/app'); // Este já está no HTML
+
+document.addEventListener('DOMContentLoaded', () => {
+    // ... (Mantenha todo o seu código script.js existente aqui) ...
+
+    // --- Funcionalidade de Áudio (parar outros quando um começa a tocar) ---
+    const allAudios = document.querySelectorAll('.member-card audio');
+
+    if (allAudios.length > 0) {
+        allAudios.forEach(audio => {
+            audio.addEventListener('play', () => {
+                allAudios.forEach(otherAudio => {
+                    if (otherAudio !== audio && !otherAudio.paused) {
+                        otherAudio.pause();
+                    }
+                });
+            });
+        });
+    }
+});

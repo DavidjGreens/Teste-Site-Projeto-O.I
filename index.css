@@ -742,3 +742,58 @@ body * {
         font-size: 1.8em !important;
     }
 }
+
+/* --- Estilos para o Player de Áudio nos Member Cards --- */
+.member-card audio {
+    width: 100%; /* Ocupa a largura total do card */
+    margin-top: 15px; /* Espaçamento acima do player */
+    margin-bottom: 15px; /* Espaçamento abaixo do player e acima do botão */
+    height: 30px; /* Altura para manter compacto */
+    background-color: #e0e0e0; /* Cor de fundo no tema CLARO */
+    border-radius: 5px;
+    outline: none; /* Remove a borda de foco padrão */
+}
+
+/* Estilos para o player de áudio no tema ESCURO */
+body.dark-mode .member-card audio {
+    background-color: #333; /* Fundo mais escuro para o player */
+}
+
+/* Estilizando os controles internos do player (limitado e pode variar entre navegadores) */
+/* Isso usa pseudo-elementos que não são padronizados e podem não funcionar em todos os navegadores */
+.member-card audio::-webkit-media-controls-panel {
+    background-color: #49b146; /* Cor do painel de controle (verde) */
+    color: #424147; /* Cor do texto/ícones (escuro) */
+}
+
+body.dark-mode .member-card audio::-webkit-media-controls-panel {
+    background-color: #388e3c; /* Verde mais escuro no dark mode */
+    color: #eee;
+}
+
+.member-card audio::-webkit-media-controls-play-button,
+.member-card audio::-webkit-media-controls-volume-slider,
+.member-card audio::-webkit-media-controls-current-time-display,
+.member-card audio::-webkit-media-controls-time-remaining-display {
+    color: inherit; /* Herda a cor do texto/ícones do painel */
+}
+
+.member-card audio::-webkit-media-controls-volume-slider::-webkit-slider-thumb {
+    background-color: #424147; /* Cor do "bolinha" do slider de volume */
+}
+
+body.dark-mode .member-card audio::-webkit-media-controls-volume-slider::-webkit-slider-thumb {
+    background-color: #eee;
+}
+
+
+/* Para Firefox, você pode precisar de algo como: */
+.member-card audio::-moz-range-thumb {
+    background-color: #424147;
+}
+body.dark-mode .member-card audio::-moz-range-thumb {
+    background-color: #eee;
+}
+
+/* Opcional: Para fazer o player parar se outro começar a tocar (via JavaScript) */
+/* Você pode adicionar isso ao seu script.js */
