@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Oswald:wght@200..700&family=VT323&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Oswald:wght@200..700;1,200..700&family=VT323&family=Winky+Sans:ital,wght@0,300..900;1,300..900&display=swap');
 
 * {
     margin: 0;
@@ -7,18 +7,19 @@
     font-family: "Oswald", sans-serif; /* Oswald para títulos e menus */
 }
 
-/* --- Estilos Gerais para o Conteúdo das Páginas --- */
+/* --- Estilos Gerais para o Conteúdo das Páginas - TEMA CLARO PADRÃO --- */
 body {
-    background-color: #b8b8b8; /* Cor de fundo padrão do site */
-    color: #333; /* Cor de texto padrão */
-    font-family: "Cabin", sans-serif; /* Usando a fonte Cabin para o texto principal, que é mais legível para blocos grandes de texto */
+    background-color: #f8f8f8; /* Fundo muito claro para o tema padrão (claro) */
+    color: #333; /* Cor de texto padrão para o tema claro */
+    font-family: "Cabin", sans-serif; /* Usando a fonte Cabin para o texto principal */
     line-height: 1.6; /* Aumenta o espaçamento entre linhas para melhor leitura */
+    overflow-x: hidden; /* Previne rolagem horizontal indesejada */
 }
 
 /* Modo escuro para o corpo */
 body.dark-mode {
-    background-color: #222;
-    color: #eee;
+    background-color: #222; /* Fundo escuro para o tema escuro */
+    color: #eee; /* Cor de texto clara para o tema escuro */
 }
 
 .interface {
@@ -28,22 +29,25 @@ body.dark-mode {
 
 header {
     width: 100%;
-    background-color: #424147;
+    background-color: #424147; /* Header sempre escuro */
+    position: relative; /* ADICIONADO: Para que .settings-container se posicione em relação ao header */
 }
 
+/* --- Estilos para o FOOTER --- */
 footer {
-    background-color: #49b146;
-    font-family:cursive; /* Cuidado com fontes muito específicas, podem não carregar em todos os navegadores */
-    font-size: 10px;
+    background-color: #49b146; /* Cor de fundo do footer no tema CLARO */
+    font-family: "Cabin", sans-serif; /* Preferência por Cabin para textos */
+    font-size: 0.9em; /* Tamanho da fonte ajustado */
     padding: 20px;
     text-align: center;
-    color: #424147; /* Cor do texto no footer */
+    color: #424147; /* Cor do texto no footer para o tema CLARO */
 }
 /* Estilo do footer para modo escuro */
 body.dark-mode footer {
     background-color: #388e3c; /* Um verde um pouco mais escuro para o modo escuro */
-    color: #eee;
+    color: #eee; /* Cor de texto clara para o footer no modo escuro */
 }
+
 
 .top-header {
     padding: 20px 4%;
@@ -65,10 +69,10 @@ body.dark-mode footer {
     font-size: 20px;
     border-radius: 50%;
     background-color: transparent;
-    border: 1px solid #424147;
+    border: 1px solid #424147; /* Borda escura no tema CLARO */
     cursor: pointer;
-    color: white;
-    display: inline-flex; /* Para centralizar o ícone */
+    color: white; /* Ícone branco no tema CLARO */
+    display: inline-flex;
     align-items: center;
     justify-content: center;
 }
@@ -76,10 +80,14 @@ body.dark-mode footer {
 .top-header .social-links button:hover {
     background-color: #49b146;
     border-color: #49b146;
-    color: #424147;
+    color: #424147; /* Texto escuro no hover do tema CLARO */
 }
 
 /* Estilos para o bottom-header e menu principal */
+.bottom-header {
+    /* Mantenha o bottom-header como está, sem position: relative ou absolute */
+}
+
 .bottom-header nav ul { /* Regra original para desktop */
     display: flex;
     align-items: center;
@@ -108,19 +116,19 @@ body.dark-mode footer {
 
 .drop-hover .drop {
     position: absolute;
-    background-color: #5f5e64;
+    background-color: #5f5e64; /* Fundo do dropdown no tema CLARO */
     width: 100%;
     max-height: 300px;
     overflow-y: auto;
-    display: none; /* Esconde por padrão no desktop */
+    display: none;
     transition: .3s;
     z-index: 10;
-    flex-direction: column; /* Garante que os itens do dropdown se empilhem */
+    flex-direction: column;
 }
 
 /* Mostra o menu quando passa o mouse */
 .drop-hover:hover .drop {
-    display: flex; /* Altera para flex para exibir no hover */
+    display: flex;
 }
 
 .drop-hover .drop a {
@@ -160,9 +168,11 @@ body.dark-mode footer {
 
 .settings-container {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 50%; /* Centraliza verticalmente em relação ao header */
+    transform: translateY(-50%); /* Ajuste fino para centralização */
+    right: 20px; /* Distância da direita */
     z-index: 1000;
+    /* Remover top: 20px; para evitar que saia do header */
 }
 
 .settings-button {
@@ -187,10 +197,10 @@ body.dark-mode footer {
 
 .settings-menu {
     position: absolute;
-    top: 40px;
+    top: 40px; /* Relativo ao .settings-container */
     right: 0;
-    background-color: #5f5e64;
-    border: 1px solid #424147;
+    background-color: #5f5e64; /* Fundo do menu de configurações no tema CLARO */
+    border: 1px solid #424147; /* Borda no tema CLARO */
     border-radius: 5px;
     padding: 10px;
     display: none;
@@ -202,6 +212,7 @@ body.dark-mode footer {
     visibility: hidden;
     transform: translateY(-10px);
     transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+    z-index: 999;
 }
 
 .settings-menu.open {
@@ -214,7 +225,7 @@ body.dark-mode footer {
 .settings-menu button {
     background: none;
     border: none;
-    color: #fff;
+    color: #fff; /* Cor do texto no tema CLARO */
     padding: 8px 15px;
     cursor: pointer;
     display: block;
@@ -226,15 +237,10 @@ body.dark-mode footer {
 
 .settings-menu button:hover {
     background-color: #49b146;
-    color: #424147;
+    color: #424147; /* Cor do texto no hover do tema CLARO */
 }
 
-/* --- Tema Escuro --- */
-
-body.dark-mode {
-    background-color: #222;
-    color: #eee;
-}
+/* --- TEMA ESCURO --- */
 
 body.dark-mode header {
     background-color: #1a1a1a;
@@ -296,22 +302,24 @@ body.dark-mode .settings-menu button:hover {
     color: #eee;
 }
 
-/* --- Novos estilos para a seção da linguagem --- */
+/* --- Estilos para a seção da linguagem (.language-info) e FEATURE CARDS --- */
+/* Este é o card de conteúdo que você usa para as páginas de linguagem (HTML, CSS, JS, etc.) */
 .language-info {
     max-width: 800px;
     margin: 40px auto 60px auto;
-    text-align: left; /* Alinha o texto à esquerda dentro do container */
-    background-color: #5f5e64; /* Fundo do card */
+    text-align: left;
+    background-color: #ffffff; /* Fundo branco para o card no tema CLARO */
     padding: 30px 40px;
     border-radius: 12px;
-    color: white; /* Cor do texto dentro do card */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    color: #333; /* Cor do texto escuro para o card no tema CLARO */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Sombra mais suave no tema CLARO */
 }
 
 /* Modo escuro para o card de informações da linguagem */
 body.dark-mode .language-info {
     background-color: #333; /* Fundo mais escuro para o card no modo escuro */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5); /* Sombra mais forte no modo escuro */
+    color: #eee; /* Cor do texto clara para o card no modo escuro */
 }
 
 body.dark-mode .language-info h1,
@@ -328,17 +336,17 @@ body.dark-mode .language-info pre { /* Ajusta o estilo do bloco de código no mo
 .language-info h1,
 .language-info h2,
 .language-info h3 {
-    font-family: "Oswald", sans-serif; /* Mantém Oswald para títulos */
-    color: #49b146; /* Uma cor de destaque para os títulos, como o verde do seu footer */
+    font-family: "Oswald", sans-serif;
+    color: #49b146;
     font-weight: 700;
-    margin-top: 30px; /* Espaço acima dos títulos para separação */
+    margin-top: 30px;
     margin-bottom: 15px;
-    text-align: center; /* Centraliza apenas os títulos */
+    text-align: center;
 }
 
 .language-info h1 {
     font-size: 2.5rem;
-    margin-top: 0; /* Remove margem superior do H1 principal */
+    margin-top: 0;
 }
 
 .language-info h2 {
@@ -347,14 +355,14 @@ body.dark-mode .language-info pre { /* Ajusta o estilo do bloco de código no mo
 
 .language-info p {
     font-size: 1.15rem;
-    margin-bottom: 1em; /* Espaçamento entre parágrafos */
+    margin-bottom: 1em;
     line-height: 1.6;
 }
 
 .language-info ul {
-    list-style: disc; /* Use 'disc' para bolinhas padrão ou 'none' se for estilizar manualmente */
+    list-style: disc;
     font-size: 1rem;
-    margin-left: 20px; /* Recuo para listas */
+    margin-left: 20px;
     margin-bottom: 20px;
 }
 
@@ -364,52 +372,125 @@ body.dark-mode .language-info pre { /* Ajusta o estilo do bloco de código no mo
 
 /* Estilo para blocos de código */
 .language-info pre {
-    background-color: #424147; /* Cor de fundo para o bloco de código, parecido com o header */
-    color: #f8f8f2; /* Cor do texto no código */
+    background-color: #f0f0f0; /* Fundo claro para o bloco de código no tema CLARO */
+    color: #333; /* Cor do texto escura no código no tema CLARO */
     padding: 20px;
     border-radius: 8px;
-    overflow-x: auto; /* Adiciona barra de rolagem horizontal se o código for muito longo */
-    font-family: 'VT323', monospace; /* Use a fonte VT323 que você importou para o código, ela é monospace e fica legal! */
+    overflow-x: auto;
+    font-family: 'VT323', monospace;
     font-size: 1rem;
     line-height: 1.4;
     margin-top: 20px;
     margin-bottom: 20px;
-    border-left: 5px solid #49b146; /* Uma borda colorida para destaque */
+    border-left: 5px solid #49b146;
 }
 
 /* Estilo para o texto dentro do código, caso você use <code> dentro de <pre> */
 .language-info pre code {
-    display: block; /* Garante que o code preencha o pre */
-    white-space: pre-wrap; /* Quebra linhas para código que é muito longo e não quer barra de rolagem horizontal */
+    display: block;
+    white-space: pre-wrap;
 }
 
 /* Estilo para a imagem dentro do card */
 section.language-info img {
-    display: block; /* Faz a imagem se comportar como um bloco para centralizar com margin: auto */
-    background-color: #929292;
+    display: block;
+    background-color: #e0e0e0; /* Fundo claro para a imagem no tema CLARO */
     height: 230px;
     width: 230px;
-    object-fit: contain; /* Garante que a imagem se ajuste dentro das dimensões sem cortar */
-    margin: 0 auto 30px auto; /* Centraliza a imagem e adiciona margem inferior */
+    object-fit: contain;
+    margin: 0 auto 30px auto;
     border-radius: 12px;
-    padding: 15px; /* Adiciona um pouco de padding interno caso o logo não preencha tudo */
+    padding: 15px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
+/* Modo escuro para a imagem dentro do card */
+body.dark-mode section.language-info img {
+    background-color: #555; /* Fundo mais escuro para a imagem no modo escuro */
+}
+
 
 /* Links dentro do conteúdo */
 .language-info a {
-    color: #49b146; /* Cor do link */
-    text-decoration: none; /* Remove o sublinhado padrão */
+    color: #49b146;
+    text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
 .language-info a:hover {
-    color: #388e3c; /* Cor mais escura ao passar o mouse */
-    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+    color: #388e3c;
+    text-decoration: underline;
 }
 
-/* Transições */
+/* --- CORREÇÕES PARA FEATURE CARDS (index.html) --- */
+.feature-card {
+    background-color: #f0f0f0; /* Fundo do card no tema CLARO */
+    color: #333; /* Cor do texto no card no tema CLARO */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center; /* CENTRALIZAR TEXTO AQUI */
+    display: flex; /* Para flexbox e alinhar o botão no final */
+    flex-direction: column; /* Para alinhar o botão no final */
+    justify-content: space-between; /* Para alinhar o botão no final */
+}
+
+body.dark-mode .feature-card {
+    background-color: #424147;
+    color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+.feature-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #49b146;
+}
+
+.feature-card p {
+    font-size: 1em;
+    margin-bottom: 20px;
+    text-align: center; /* CENTRALIZAR TEXTO AQUI TAMBÉM */
+    max-width: none;
+    flex-grow: 1; /* Permite que o parágrafo ocupe o espaço extra para empurrar o botão */
+}
+
+/* --- CORREÇÃO DOS BOTÕES DENTRO DOS FEATURE CARDS --- */
+.feature-card .feature-button { /* Use a classe .feature-button para ser mais específico */
+    display: inline-block;
+    background-color: #49b146; /* Cor verde para o botão no tema CLARO */
+    color: #424147; /* Cor do texto no botão no tema CLARO */
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-top: auto; /* Garante que o botão fique no final do card */
+}
+
+body.dark-mode .feature-card .feature-button {
+    background-color: #388e3c; /* Verde mais escuro para o botão no tema ESCURO */
+    color: #eee; /* Cor do texto clara no botão no tema ESCURO */
+}
+
+.feature-card .feature-button:hover {
+    background-color: #3a8e34; /* Verde mais escuro no hover do tema CLARO */
+    color: white;
+}
+
+body.dark-mode .feature-card .feature-button:hover {
+    background-color: #218838; /* Verde ainda mais escuro no hover do tema ESCURO */
+    color: white;
+}
+
+
+/* Transições para todo o corpo, garantindo suavidade */
 body,
 body * {
     transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease, transform 0.5s ease;
@@ -422,88 +503,95 @@ body * {
 /* Para telas menores que 768px (smartphones e tablets pequenos) */
 @media screen and (max-width: 768px) {
     .interface {
-        padding: 0 2%; /* Reduzir o padding geral da interface */
+        padding: 0 2%;
     }
 
     /* HEADER */
     .top-header {
-        flex-direction: column; /* Empilha logo e social links */
-        align-items: center; /* Centraliza itens empilhados */
-        gap: 15px; /* Espaço entre logo e social links */
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        padding-bottom: 0;
     }
 
     .logotipo img {
-        max-width: 150px; /* Reduz o tamanho do logo */
+        max-width: 150px;
         height: auto;
     }
 
     .social-links button {
-        padding: 8px; /* Ajusta o padding dos botões de redes sociais */
+        padding: 8px;
         font-size: 1.1em;
     }
 
-    /* Ajuste para o .bottom-header no mobile */
-    .bottom-header nav.menu {
-        display: flex; /* Permite posicionar os elementos internos (toggle e menu) */
-        justify-content: flex-end; /* Alinha o toggle para a direita */
-        align-items: center;
-        padding: 0 20px; /* Adiciona padding para o conteúdo da nav */
-        position: relative; /* Para posicionar o menu-toggle e o menu ul */
-        height: 60px; /* Altura para a barra de navegação no mobile */
-        z-index: 999; /* Garante que o nav.menu fique acima do main content */
+    /* Ajuste para o bottom-header e menu principal no mobile */
+    .bottom-header {
+        width: 100%;
+        position: relative; /* ADICIONADO: Para que o menu-toggle se posicione em relação a ele */
+        z-index: 999;
     }
+
+    .bottom-header nav.menu {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 0 20px;
+        position: relative;
+        height: 60px;
+        background-color: #424147;
+    }
+    body.dark-mode .bottom-header nav.menu {
+        background-color: #1a1a1a;
+    }
+
 
     /* Oculta os itens do menu principal em desktop */
-    .bottom-header nav ul { /* Esta regra é para o desktop. No mobile, vamos redefinir com a classe */
-        display: none; /* Garante que o menu desktop não apareça */
-    }
-
-    /* Menu de Navegação (Menu Hambúrguer) */
-    .bottom-header nav.menu .main-nav-list {
-        display: none; /* Esconde o menu principal por padrão no mobile */
+    .bottom-header nav ul {
+        display: none;
         flex-direction: column;
-        width: 100%; /* Ocupa a largura total */
-        max-height: calc(100vh - 120px); /* Ajustado: 100vh - altura do cabeçalho total (~60px do top-header + ~60px do bottom-header) */
-        overflow-y: auto; /* Adiciona scroll se o conteúdo for muito longo */
+        width: 100%;
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
         text-align: center;
-        position: fixed; /* Fixado na tela para rolar com o conteúdo */
-        top: 120px; /* Ajustado: Posiciona abaixo do cabeçalho completo (top-header + bottom-header) */
+        position: fixed;
+        top: 120px; /* Alinhar abaixo do header */
         left: 0;
         right: 0;
-        background-color: #424147; /* Fundo do menu principal */
-        z-index: 998; /* Abaixo do settings-container e menu-toggle */
-        padding: 0; /* Remove padding inicial */
-        box-shadow: 0 5px 15px rgba(0,0,0,0.5); /* Sombra mais forte */
-        transition: transform 0.4s ease-out, opacity 0.4s ease-out; /* Transição para aparecer */
-        transform: translateX(100%); /* Começa fora da tela (direita) */
+        background-color: #424147;
+        z-index: 998;
+        padding: 0;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+        transform: translateX(100%);
         opacity: 0;
     }
     body.dark-mode .bottom-header nav.menu .main-nav-list {
         background-color: #2b2b2b;
     }
 
+
     .bottom-header nav.menu .main-nav-list.active {
-        display: flex; /* Mostra o menu */
-        transform: translateX(0); /* Desliza para dentro da tela */
+        display: flex;
+        transform: translateX(0);
         opacity: 1;
     }
 
     .bottom-header nav.menu .main-nav-list li {
-        margin: 0; /* Remove margem para controlar com padding */
-        border-bottom: 1px solid rgba(255,255,255,0.1); /* Separador entre itens */
+        margin: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
     }
     .bottom-header nav.menu .main-nav-list li:last-child {
-        border-bottom: none; /* Remove borda do último item */
+        border-bottom: none;
     }
 
     .bottom-header nav.menu .main-nav-list li a {
         color: #fff;
-        padding: 18px 20px; /* Ajusta o padding para mais espaço */
+        padding: 18px 20px;
         text-decoration: none;
         font-weight: 600;
         display: block;
         transition: background-color .3s, color .3s;
-        font-size: 1.2em; /* Aumenta um pouco a fonte */
+        font-size: 1.2em;
     }
 
     .bottom-header nav.menu .main-nav-list li a:hover {
@@ -522,16 +610,16 @@ body * {
 
     /* Dropdown do menu em dispositivos menores */
     .drop {
-        position: static; /* Essencial para que ele flua no documento */
+        position: static;
         width: 100%;
-        box-shadow: none; /* Remove a sombra extra do dropdown */
-        background-color: rgba(0,0,0,0.2); /* Fundo sutil para o dropdown */
-        border-top: 1px solid rgba(255,255,255,0.1); /* Separador */
-        padding: 0; /* Remove padding inicial */
-        display: none; /* Esconde por padrão no mobile */
+        box-shadow: none;
+        background-color: rgba(0,0,0,0.2);
+        border-top: 1px solid rgba(255,255,255,0.1);
+        padding: 0;
+        display: none;
         transition: max-height 0.3s ease-out, padding 0.3s ease-out, opacity 0.3s ease-out;
-        max-height: 0; /* Para a transição */
-        overflow: hidden; /* Esconde o conteúdo */
+        max-height: 0;
+        overflow: hidden;
         opacity: 0;
     }
     body.dark-mode .drop {
@@ -539,18 +627,18 @@ body * {
     }
 
     .drop.active-drop {
-        display: flex !important; /* Mostra o dropdown */
+        display: flex !important;
         flex-direction: column;
-        max-height: 200px; /* Ajuste conforme o número de itens, para a transição */
-        padding-top: 10px; /* Padding quando aberto */
+        max-height: 200px;
+        padding-top: 10px;
         padding-bottom: 10px;
         opacity: 1;
     }
 
     .drop a {
-        padding: 12px 30px; /* Ajusta padding dos itens do dropdown */
-        font-size: 1.05em; /* Ajusta o tamanho da fonte */
-        color: #ddd; /* Cor de texto para os itens do dropdown */
+        padding: 12px 30px;
+        font-size: 1.05em;
+        color: #ddd;
     }
     body.dark-mode .drop a {
         color: #eee;
@@ -567,18 +655,18 @@ body * {
 
     /* Botão Hambúrguer */
     .menu-toggle {
-        display: block; /* Mostra o botão hambúrguer */
+        display: block;
         background: none;
         border: none;
         color: white;
-        font-size: 2.2em; /* Aumenta um pouco o ícone */
+        font-size: 2.2em;
         cursor: pointer;
         padding: 0;
-        position: absolute; /* Posição absoluta dentro da .bottom-header nav.menu */
-        right: 20px;
+        position: absolute;
+        right: 20px; /* Move para a direita do bottom-header */
         top: 50%;
         transform: translateY(-50%);
-        z-index: 1001; /* Fica acima do menu e settings */
+        z-index: 1001;
     }
     body.dark-mode .menu-toggle {
         color: white;
@@ -586,54 +674,11 @@ body * {
 
     /* O settings-container precisa ser ajustado para não conflitar com o menu-toggle */
     .settings-container {
-        top: 20px;
-        right: 80px; /* Mova um pouco para a esquerda para não colidir com o toggle */
+        /* No mobile, ajustamos a posição relativa ao header principal */
+        top: 50%; /* Centraliza verticalmente no header */
+        transform: translateY(-50%); /* Ajuste fino */
+        right: 80px; /* Distância da direita, para não bater no menu-toggle */
         z-index: 1002;
-    }
-
-    /* Hero Section (index.html) */
-    .hero-section {
-        padding: 80px 15px; /* Reduz o padding */
-    }
-    .hero-section h1 {
-        font-size: 2em; /* Reduz o tamanho da fonte do título principal */
-    }
-    .hero-section p {
-        font-size: 1em; /* Reduz o tamanho da fonte do parágrafo */
-    }
-
-    /* Content Sections (index.html, sobre.html) */
-    .content-section {
-        padding: 30px 2%; /* Ajusta o padding */
-        margin-bottom: 30px;
-    }
-    .content-section h2 {
-        font-size: 1.8em; /* Reduz o tamanho do título da seção */
-    }
-
-    /* Feature Cards (index.html) */
-    .feature-cards {
-        grid-template-columns: 1fr; /* Um card por linha */
-    }
-
-    /* Member Cards (sobre.html) - Adaptado do seu código original */
-    /* Se for usar em sobre.html, você precisa definir os estilos de .team-container, .member-photo etc. */
-    /* aqui ou em um CSS separado para a página "sobre". */
-    /* Estou incluindo as que estavam no seu original: */
-    .team-container {
-        grid-template-columns: 1fr; /* Um card por linha */
-    }
-    .member-photo {
-        width: 120px; /* Reduz o tamanho da foto do membro */
-        height: 120px;
-    }
-    .member-desc {
-        min-height: auto; /* Remove altura mínima fixa se não for mais necessário */
-    }
-
-    /* Footer */
-    footer p { /* Se você mudar para <p> no HTML, lembre-se de mudar aqui para footer p */
-        font-size: 0.9em; /* Reduz o tamanho da fonte do copyright */
     }
 }
 
@@ -669,17 +714,22 @@ body * {
         padding: 8px 15px;
         font-size: 0.9em;
     }
+
+    /* Ajuste do settings-container para telas ainda menores */
+    .settings-container {
+        right: 70px; /* Mais próximo da borda direita em telas bem pequenas */
+    }
 }
 
 /* ------------------------------------------------------------- */
 /* CORREÇÃO DO POSICIONAMENTO DO VLIBRAS (Adicione ao final do CSS) */
 /* ------------------------------------------------------------- */
 .vw-access-button {
-    left: 20px !important; /* Move para a esquerda */
-    right: auto !important; /* Remove o posicionamento da direita */
-    bottom: 20px !important; /* Posiciona na parte inferior */
-    top: auto !important; /* Remove o posicionamento do topo */
-    z-index: 9999 !important; /* Garante que fique acima de tudo */
+    left: 20px !important;
+    right: auto !important;
+    bottom: 20px !important;
+    top: auto !important;
+    z-index: 9999 !important;
 }
 
 /* Ajuste de tamanho e posição para telas menores, se necessário */
@@ -687,8 +737,8 @@ body * {
     .vw-access-button {
         left: 10px !important;
         bottom: 10px !important;
-        width: 50px !important; /* Ajuste o tamanho se o padrão for muito grande */
-        height: 50px !important; /* Ajuste o tamanho se o padrão for muito grande */
-        font-size: 1.8em !important; /* Ajusta o tamanho do ícone dentro do botão */
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 1.8em !important;
     }
 }

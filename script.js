@@ -1,101 +1,125 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // === Lógica do Tema Escuro ===
+    // Seletores para elementos do menu e tema
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainNavList = document.querySelector('.main-nav-list');
+    const dropHover = document.querySelector('.drop-hover > a'); // O link "LINGUAGENS"
+    const dropMenu = document.querySelector('.drop-hover .drop'); // O div de dropdown
+    const settingsButton = document.querySelector('.settings-button');
+    const settingsMenu = document.querySelector('.settings-menu');
     const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
 
-    // Função para aplicar o tema salvo
-    const applyTheme = () => {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            body.classList.add('dark-mode');
-            themeToggle.textContent = 'Tema Claro';
-        } else {
-            body.classList.remove('dark-mode');
-            themeToggle.textContent = 'Tema Escuro';
-        }
-    };
-
-    // Aplica o tema ao carregar a página
-    applyTheme();
-
-    // Event listener para o botão de alternar tema
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            if (body.classList.contains('dark-mode')) {
-                body.classList.remove('dark-mode');
-                localStorage.setItem('theme', 'light');
-                themeToggle.textContent = 'Tema Escuro';
-            } else {
-                body.classList.add('dark-mode');
-                localStorage.setItem('theme', 'dark');
-                themeToggle.textContent = 'Tema Claro';
+    // --- Funcionalidade do Menu Hambúrguer ---
+    if (menuToggle && mainNavList) {
+        menuToggle.addEventListener('click', () => {
+            mainNavList.classList.toggle('active');
+            // Fechar menu de configurações se estiver aberto
+            if (settingsMenu.classList.contains('open')) {
+                settingsMenu.classList.remove('open');
+                settingsButton.classList.remove('active');
             }
+        });
+
+        // Fechar menu quando um item é clicado (para mobile)
+        mainNavList.querySelectorAll('a:not(.drop-hover a)').forEach(item => {
+            item.addEventListener('click', () => {
+                if (mainNavList.classList.contains('active')) {
+                    mainNavList.classList.remove('active');
+                }
+            });
         });
     }
 
-    // === Lógica do Menu de Configurações (Engrenagem) ===
-    const settingsButton = document.querySelector('.settings-button');
-    const settingsMenu = document.querySelector('.settings-menu');
+    // --- Funcionalidade do Dropdown (para Mobile) ---
+    // Ativa/desativa o dropdown quando o link 'Linguagens' é clicado
+    if (dropHover && dropMenu) {
+        dropHover.addEventListener('click', (e) => {
+            // Previne a navegação para '#' no mobile
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                dropMenu.classList.toggle('active-drop');
+            }
+        });
 
+        // Fechar dropdown quando um item do dropdown é clicado (para mobile)
+        dropMenu.querySelectorAll('a').forEach(item => {
+            item.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    dropMenu.classList.remove('active-drop');
+                    // Opcional: fechar o menu principal se o dropdown for parte dele
+                    if (mainNavList.classList.contains('active')) {
+                        mainNavList.classList.remove('active');
+                    }
+                }
+            });
+        });
+    }
+
+    // --- Funcionalidade da Engrenagem de Configurações ---
     if (settingsButton && settingsMenu) {
         settingsButton.addEventListener('click', () => {
             settingsMenu.classList.toggle('open');
-            settingsButton.classList.toggle('active'); // Para girar a engrenagem
+            settingsButton.classList.toggle('active');
+            // Fechar menu hambúrguer se estiver aberto
+            if (mainNavList && mainNavList.classList.contains('active')) {
+                mainNavList.classList.remove('active');
+            }
         });
 
-        // Fechar o menu de configurações se clicar fora
+        // Fechar menu de configurações se clicar fora dele
         document.addEventListener('click', (event) => {
-            if (!settingsButton.contains(event.target) && !settingsMenu.contains(event.target)) {
+            if (!settingsMenu.contains(event.target) && !settingsButton.contains(event.target)) {
                 settingsMenu.classList.remove('open');
                 settingsButton.classList.remove('active');
             }
         });
     }
 
-    // === Lógica do Menu Hambúrguer e Dropdowns (Mobile) ===
-    const menuToggle = document.querySelector('.menu-toggle');
-    const mainNavigationMenu = document.querySelector('.menu .main-nav-list');
-    const dropHoverItems = document.querySelectorAll('.drop-hover > a'); // Seleciona o link <a> dentro de .drop-hover
+    // --- Funcionalidade de Alternância de Tema (Tema Escuro/Claro) ---
 
-    if (menuToggle && mainNavigationMenu) {
-        menuToggle.addEventListener('click', () => {
-            mainNavigationMenu.classList.toggle('active');
-            // Fechar todos os dropdowns quando o menu principal é fechado ou aberto
-            document.querySelectorAll('.drop.active-drop').forEach(drop => {
-                drop.classList.remove('active-drop');
-            });
-        });
+    // 1. Função para aplicar o tema
+    function applyTheme(theme) {
+        const body = document.body;
+        if (theme === 'dark') {
+            body.classList.add('dark-mode');
+            if (themeToggle) {
+                themeToggle.textContent = 'Tema Claro';
+            }
+        } else {
+            body.classList.remove('dark-mode');
+            if (themeToggle) {
+                themeToggle.textContent = 'Tema Escuro';
+            }
+        }
     }
 
-    // Lógica para dropdowns no mobile (clique no "LINGUAGENS")
-    dropHoverItems.forEach(item => {
-        item.addEventListener('click', (event) => {
-            // Verifica se está em modo mobile (com o menu principal ativo)
-            if (mainNavigationMenu && mainNavigationMenu.classList.contains('active')) {
-                event.preventDefault(); // Previne a navegação padrão do link pai
-                const dropMenu = item.nextElementSibling; // Pega o div.drop ao lado do <a>
-                if (dropMenu && dropMenu.classList.contains('drop')) {
-                    // Fechar outros dropdowns abertos antes de abrir o atual
-                    document.querySelectorAll('.drop.active-drop').forEach(openDrop => {
-                        if (openDrop !== dropMenu) { // Não feche o que estamos tentando abrir
-                            openDrop.classList.remove('active-drop');
-                        }
-                    });
-                    dropMenu.classList.toggle('active-drop'); // Alterna a classe para mostrar/esconder o dropdown
-                }
+    // 2. Carregar o tema salvo no localStorage ao carregar a página
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        applyTheme(savedTheme);
+    } else {
+        // Se não houver tema salvo, verifica a preferência do sistema
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            applyTheme('dark');
+        } else {
+            applyTheme('light'); // Aplica o tema claro como padrão se não houver preferência ou salvo
+        }
+    }
+
+    // 3. Event listener para alternar o tema
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const body = document.body;
+            if (body.classList.contains('dark-mode')) {
+                applyTheme('light');
+                localStorage.setItem('theme', 'light'); // Salva a escolha do usuário
+            } else {
+                applyTheme('dark');
+                localStorage.setItem('theme', 'dark'); // Salva a escolha do usuário
             }
         });
-    });
-
-    // Fechar o menu hamburguer e dropdowns se clicar fora no mobile
-    document.addEventListener('click', (event) => {
-        // Verifica se o menu hamburguer está ativo e se o clique não foi no botão de toggle ou no próprio menu
-        if (mainNavigationMenu && mainNavigationMenu.classList.contains('active') &&
-            !menuToggle.contains(event.target) && !mainNavigationMenu.contains(event.target)) {
-            mainNavigationMenu.classList.remove('active');
-            document.querySelectorAll('.drop.active-drop').forEach(drop => {
-                drop.classList.remove('active-drop');
-            });
-        }
-    });
+    }
 });
+
+// Adicione este script no final do seu arquivo, caso já não tenha.
+// Ele é para o VLibras, não relacionado ao tema, mas é bom manter junto.
+// new window.VLibras.Widget('https://vlibras.gov.br/app'); // Este já está no HTML
