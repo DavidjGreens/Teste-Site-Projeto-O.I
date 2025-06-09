@@ -115,48 +115,7 @@
   </footer>
 
   <script src="https://kit.fontawesome.com/0b6d1a1fba.js" crossorigin="anonymous"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const settingsContainer = document.querySelector('.settings-container');
-      const settingsButton = document.querySelector('.settings-button');
-      const settingsMenu = document.querySelector('.settings-menu');
-      const themeToggle = document.getElementById('theme-toggle');
-      const body = document.body;
-
-      let isMenuOpen = false;
-      let isDarkMode = false;
-
-      settingsButton.addEventListener('click', () => {
-        isMenuOpen = !isMenuOpen;
-        settingsMenu.classList.toggle('open');
-        settingsButton.classList.toggle('active', isMenuOpen);
-      });
-
-      themeToggle.addEventListener('click', () => {
-        isDarkMode = !isDarkMode;
-        body.classList.toggle('dark-mode', isDarkMode);
-        themeToggle.textContent = isDarkMode ? 'Tema Claro' : 'Tema Escuro';
-        localStorage.setItem('darkModeEnabled', isDarkMode);
-      });
-
-      (function loadThemePreference() {
-        const savedTheme = localStorage.getItem('darkModeEnabled');
-        if (savedTheme !== null) {
-          isDarkMode = savedTheme === 'true';
-          body.classList.toggle('dark-mode', isDarkMode);
-          themeToggle.textContent = isDarkMode ? 'Tema Claro' : 'Tema Escuro';
-        }
-      })();
-
-      document.addEventListener('click', event => {
-        if (settingsContainer && !settingsContainer.contains(event.target) && isMenuOpen) {
-          settingsMenu.classList.remove('open');
-          settingsButton.classList.remove('active');
-          isMenuOpen = false;
-        }
-      });
-    });
-  </script>
+  <script src="script.js"></script>
   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
   <script>
     new window.VLibras.Widget('https://vlibras.gov.br/app');

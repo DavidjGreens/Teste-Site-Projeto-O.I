@@ -178,7 +178,7 @@
             <div class="member-card">
                 <img src="imagens/daviddrip.jpg" alt="Foto de David Jr." class="member-photo" />
                 <div class="member-name">David Jr.</div>
-                <div class="member-desc">Desenvolvedor focado em <b>Back-End e Front-End</b>. Apaixonado por criar soluções robustas e funcionais.</div>
+                <div class="member-desc"><b>Back-End e Front-End</b>Moreno do Mod III.</div>
                 <a href="https://www.instagram.com/_davidj_s/" target="_blank" class="instagram-btn">
                     <i class="bi bi-instagram"></i> Instagram
                 </a>
@@ -187,7 +187,7 @@
             <div class="member-card">
                 <img src="imagens/enzo.png" alt="Foto de Enzo Brancher" class="member-photo" />
                 <div class="member-name">Enzo Brancher</div>
-                <div class="member-desc">Atua no <b>Front-End e Back-End</b>, contribuindo com a interface do usuário e a lógica do servidor.</div>
+                <div class="member-desc"><b>Front-End e Back-End</b> Burguês da RTX 3080 Ti.</div>
                 <a href="https://www.instagram.com/enzobrancher_/" target="_blank" class="instagram-btn">
                     <i class="bi bi-instagram"></i> Instagram
                 </a>
@@ -196,7 +196,7 @@
             <div class="member-card">
                 <img src="imagens/pedro.png" alt="Foto de Pedro Franz" class="member-photo" />
                 <div class="member-name">Pedro Franz</div>
-                <div class="member-desc">Focado em <b>Front-End</b> e na experiência do usuário, garantindo que o site seja intuitivo e agradável.</div>
+                <div class="member-desc"><b>Front-End</b> Pedro.</div>
                 <a href="https://www.instagram.com/pedregulho35/" target="_blank" class="instagram-btn">
                     <i class="bi bi-instagram"></i> Instagram
                 </a>
@@ -205,7 +205,7 @@
             <div class="member-card">
                 <img src="imagens/davistobe.jpg" alt="Foto de Davi Stobe" class="member-photo" />
                 <div class="member-name">Davi Stobe</div>
-                <div class="member-desc">Especialista em <b>análise de dados e tecnologias de jogos</b>, contribuindo para a seção de Engines.</div>
+                <div class="member-desc"><b>análise de dados e tecnologias de jogos</b>, contribuindo para a seção de Engines.</div>
                 <a href="https://www.instagram.com/kylexsn/" target="_blank" class="instagram-btn">
                     <i class="bi bi-instagram"></i> Instagram
                 </a>
@@ -236,52 +236,7 @@
     </footer>
 
     <script src="https://kit.fontawesome.com/0b6d1a1fba.js" crossorigin="anonymous"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const settingsContainer = document.querySelector('.settings-container');
-            const settingsButton = document.querySelector('.settings-button');
-            const settingsMenu = document.querySelector('.settings-menu');
-            const themeToggle = document.getElementById('theme-toggle');
-            const body = document.body;
-
-            let isMenuOpen = false;
-            let isDarkMode = false;
-
-            // Alterna menu de configurações
-            settingsButton.addEventListener('click', () => {
-                isMenuOpen = !isMenuOpen;
-                settingsMenu.classList.toggle('open');
-                settingsButton.classList.toggle('active', isMenuOpen);
-            });
-
-            // Alterna tema e salva preferência
-            themeToggle.addEventListener('click', () => {
-                isDarkMode = !isDarkMode;
-                body.classList.toggle('dark-mode', isDarkMode);
-                themeToggle.textContent = isDarkMode ? 'Tema Claro' : 'Tema Escuro';
-                localStorage.setItem('darkModeEnabled', isDarkMode);
-            });
-
-            // Carrega preferência de tema ao iniciar
-            (function loadThemePreference() {
-                const savedTheme = localStorage.getItem('darkModeEnabled');
-                if (savedTheme !== null) {
-                    isDarkMode = savedTheme === 'true';
-                    body.classList.toggle('dark-mode', isDarkMode);
-                    themeToggle.textContent = isDarkMode ? 'Tema Claro' : 'Tema Escuro';
-                }
-            })();
-
-            // Fecha menu de configurações ao clicar fora
-            document.addEventListener('click', event => {
-                if (settingsContainer && !settingsContainer.contains(event.target) && isMenuOpen) {
-                    settingsMenu.classList.remove('open');
-                    settingsButton.classList.remove('active');
-                    isMenuOpen = false;
-                }
-            });
-        });
-    </script>
+    <script src="script.js"></script>
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');

@@ -127,54 +127,9 @@
     <h1>©2025 By DavidjGreens & Enzo Brancher</h1>
 </footer>
 
-  <script src="https://kit.fontawesome.com/0b6d1a1fba.js" crossorigin="anonymous"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const settingsContainer = document.querySelector('.settings-container');
-      const settingsButton = document.querySelector('.settings-button');
-      const settingsMenu = document.querySelector('.settings-menu');
-      const themeToggle = document.getElementById('theme-toggle');
-      const body = document.body;
-
-      let isMenuOpen = false;
-      let isDarkMode = false;
-
-      // Alterna menu de configurações
-      settingsButton.addEventListener('click', () => {
-        isMenuOpen = !isMenuOpen;
-        settingsMenu.classList.toggle('open');
-        settingsButton.classList.toggle('active', isMenuOpen);
-      });
-
-      // Alterna tema e salva preferência
-      themeToggle.addEventListener('click', () => {
-        isDarkMode = !isDarkMode;
-        body.classList.toggle('dark-mode', isDarkMode);
-        themeToggle.textContent = isDarkMode ? 'Tema Claro' : 'Tema Escuro';
-        localStorage.setItem('darkModeEnabled', isDarkMode);
-      });
-
-      // Carrega preferência de tema ao iniciar
-      (function loadThemePreference() {
-        const savedTheme = localStorage.getItem('darkModeEnabled');
-        if (savedTheme !== null) {
-          isDarkMode = savedTheme === 'true';
-          body.classList.toggle('dark-mode', isDarkMode);
-          themeToggle.textContent = isDarkMode ? 'Tema Claro' : 'Tema Escuro';
-        }
-      })();
-
-      // Fecha menu de configurações ao clicar fora
-      document.addEventListener('click', event => {
-        if (settingsContainer && !settingsContainer.contains(event.target) && isMenuOpen) {
-          settingsMenu.classList.remove('open');
-          settingsButton.classList.remove('active');
-          isMenuOpen = false;
-        }
-      });
-    });
-  </script>
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script src="https://kit.fontawesome.com/0b6d1a1fba.js" crossorigin="anonymous"></script>
+<script src="script.js"></script>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
   <script>
     new window.VLibras.Widget('https://vlibras.gov.br/app');
   </script>
