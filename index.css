@@ -79,7 +79,8 @@ body.dark-mode footer {
     color: #424147;
 }
 
-.bottom-header nav ul {
+/* Estilos para o bottom-header e menu principal */
+.bottom-header nav ul { /* Regra original para desktop */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -441,38 +442,45 @@ body * {
         font-size: 1.1em;
     }
 
+    /* Ajuste para o .bottom-header no mobile */
+    .bottom-header nav.menu {
+        display: flex; /* Permite posicionar os elementos internos (toggle e menu) */
+        justify-content: space-between; /* Espaçamento entre o toggle e o menu se ele não estiver full-width */
+        align-items: center;
+        padding: 0 20px; /* Adiciona padding para o conteúdo da nav */
+        position: relative; /* Para posicionar o menu-toggle e o menu ul */
+        height: 60px; /* Altura para a barra de navegação no mobile */
+    }
+
     /* Menu de Navegação (Menu Hambúrguer) */
-    .menu ul {
-        display: none; /* Esconde o menu original por padrão em mobile */
-        flex-direction: column; /* Para quando o menu estiver aberto */
+    /* Agora usamos .main-nav-list para o ul principal */
+    .bottom-header nav.menu .main-nav-list { /* Adicionei 'nav.menu' para maior especificidade */
+        display: none; /* Esconde o menu principal por padrão no mobile */
+        flex-direction: column;
         width: 100%;
         text-align: center;
-        position: absolute; /* Posição absoluta para o menu aberto */
-        top: auto; /* Removido top fixo */
+        position: absolute;
+        top: 100%; /* Posiciona o menu abaixo do .bottom-header */
         left: 0;
-        right: 0; /* Estende por toda a largura */
+        right: 0;
         background-color: #424147; /* Cor de fundo para o menu aberto */
-        z-index: 999; /* Fica por cima do conteúdo, mas abaixo do settings */
+        z-index: 998; /* Abaixo do settings-container e menu-toggle */
         padding: 20px 0;
         box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        /* Ajuste a margem superior para aparecer abaixo do top-header. */
-        /* Pode ser calculado dinamicamente com JS ou usar um valor fixo que funcione. */
-        /* Para este HTML, ele deve aparecer abaixo da section.top-header */
-        margin-top: 100px; /* Valor aproximado da altura do top-header */
     }
-    body.dark-mode .menu ul {
+    body.dark-mode .bottom-header nav.menu .main-nav-list {
         background-color: #2b2b2b; /* Cor no modo escuro */
     }
 
-    .menu ul.active { /* Classe para mostrar o menu quando ativo */
+    .bottom-header nav.menu .main-nav-list.active { /* Classe para mostrar o menu quando ativo */
         display: flex;
     }
 
-    .menu ul li {
+    .bottom-header nav.menu .main-nav-list li {
         margin: 10px 0; /* Espaçamento vertical entre os itens do menu */
     }
 
-    .menu ul li a {
+    .bottom-header nav.menu .main-nav-list li a {
         font-size: 1.1em;
         padding: 10px;
     }
@@ -499,15 +507,13 @@ body * {
         padding: 8px 0; /* Ajusta padding dos itens do dropdown */
         font-size: 1em;
     }
-    /* CORREÇÃO CRUCIAL: Exibir o dropdown quando a classe active-drop é aplicada via JS */
-    .drop.active-drop {
+    .drop.active-drop { /* Classe para mostrar o dropdown quando ativado no mobile */
         display: flex !important; /* Força a exibição */
         flex-direction: column;
     }
     /* CORREÇÃO PARA GARANTIR QUE O DROPDOWN APARECE QUANDO O MENU PRINCIPAL ESTÁ ATIVO */
-    .menu ul.active .drop {
-        /* Já definido como flex acima, mas esta regra garante se houver especificidade */
-        display: flex; /* Garante que o dropdown seja exibido quando o menu ul.active estiver ativo */
+    .bottom-header nav.menu .main-nav-list.active .drop { /* Mais específico */
+        display: flex;
         flex-direction: column;
     }
 
@@ -519,14 +525,22 @@ body * {
         color: white;
         font-size: 1.8em;
         cursor: pointer;
-        padding: 10px;
-        position: absolute;
+        padding: 0; /* Removido padding para melhor controle de posição */
+        position: absolute; /* Posição absoluta dentro da .bottom-header nav.menu */
         right: 20px; /* Alinhado à direita */
-        top: 60px; /* Ajuste a posição para ficar abaixo da linha do logo/social-links */
+        top: 50%; /* Centraliza verticalmente */
+        transform: translateY(-50%); /* Ajuste fino para centralização vertical */
         z-index: 1001; /* Fica acima do menu e settings */
     }
     body.dark-mode .menu-toggle {
         color: white;
+    }
+
+    /* O settings-container precisa ser ajustado para não conflitar com o menu-toggle */
+    .settings-container {
+        top: 20px; /* Mantém a posição original */
+        right: 20px;
+        z-index: 1002; /* Garante que ele fique por cima de tudo */
     }
 
     /* Hero Section (index.html) */
@@ -570,7 +584,7 @@ body * {
     }
 
     /* Footer */
-    footer h1 { /* Se você mudar para <p> no HTML, lembre-se de mudar aqui para footer p */
+    footer p { /* Se você mudar para <p> no HTML, lembre-se de mudar aqui para footer p */
         font-size: 0.9em; /* Reduz o tamanho da fonte do copyright */
     }
 }
@@ -606,5 +620,27 @@ body * {
     .instagram-btn {
         padding: 8px 15px;
         font-size: 0.9em;
+    }
+}
+
+/* ------------------------------------------------------------- */
+/* CORREÇÃO DO POSICIONAMENTO DO VLIBRAS (Adicione ao final do CSS) */
+/* ------------------------------------------------------------- */
+.vw-access-button {
+    left: 20px !important; /* Move para a esquerda */
+    right: auto !important; /* Remove o posicionamento da direita */
+    bottom: 20px !important; /* Posiciona na parte inferior */
+    top: auto !important; /* Remove o posicionamento do topo */
+    z-index: 9999 !important; /* Garante que fique acima de tudo */
+}
+
+/* Ajuste de tamanho e posição para telas menores, se necessário */
+@media screen and (max-width: 480px) {
+    .vw-access-button {
+        left: 10px !important;
+        bottom: 10px !important;
+        width: 50px !important; /* Ajuste o tamanho se o padrão for muito grande */
+        height: 50px !important; /* Ajuste o tamanho se o padrão for muito grande */
+        font-size: 1.8em !important; /* Ajusta o tamanho do ícone dentro do botão */
     }
 }
