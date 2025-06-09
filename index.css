@@ -4,12 +4,21 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Oswald", sans-serif;
+    font-family: "Oswald", sans-serif; /* Oswald para títulos e menus */
 }
 
+/* --- Estilos Gerais para o Conteúdo das Páginas --- */
 body {
-    background-color: #b8b8b8;
-    color: #333;
+    background-color: #b8b8b8; /* Cor de fundo padrão do site */
+    color: #333; /* Cor de texto padrão */
+    font-family: "Cabin", sans-serif; /* Usando a fonte Cabin para o texto principal, que é mais legível para blocos grandes de texto */
+    line-height: 1.6; /* Aumenta o espaçamento entre linhas para melhor leitura */
+}
+
+/* Modo escuro para o corpo */
+body.dark-mode {
+    background-color: #222;
+    color: #eee;
 }
 
 .interface {
@@ -276,60 +285,125 @@ body.dark-mode .settings-menu button:hover {
     color: #eee;
 }
 
-body.dark-mode .settings-b{
-
-    
-
+/* --- Novos estilos para a seção da linguagem --- */
+.language-info {
+    max-width: 800px;
+    margin: 40px auto 60px auto;
+    text-align: left; /* Alinha o texto à esquerda dentro do container */
+    background-color: #5f5e64; /* Fundo do card */
+    padding: 30px 40px;
+    border-radius: 12px;
+    color: white; /* Cor do texto dentro do card */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
+
+/* Modo escuro para o card de informações da linguagem */
+body.dark-mode .language-info {
+    background-color: #333; /* Fundo mais escuro para o card no modo escuro */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+body.dark-mode .language-info h1,
+body.dark-mode .language-info h2 {
+    color: #49b146; /* Mantém o destaque dos títulos no modo escuro */
+}
+
+body.dark-mode .language-info pre { /* Ajusta o estilo do bloco de código no modo escuro */
+    background-color: #444;
+    border-left-color: #388e3c;
+    color: #eee;
+}
+
+.language-info h1,
+.language-info h2,
+.language-info h3 {
+    font-family: "Oswald", sans-serif; /* Mantém Oswald para títulos */
+    color: #49b146; /* Uma cor de destaque para os títulos, como o verde do seu footer */
+    font-weight: 700;
+    margin-top: 30px; /* Espaço acima dos títulos para separação */
+    margin-bottom: 15px;
+    text-align: center; /* Centraliza apenas os títulos */
+}
+
+.language-info h1 {
+    font-size: 2.5rem;
+    margin-top: 0; /* Remove margem superior do H1 principal */
+}
+
+.language-info h2 {
+    font-size: 2rem;
+}
+
+.language-info p {
+    font-size: 1.15rem;
+    margin-bottom: 1em; /* Espaçamento entre parágrafos */
+    line-height: 1.6;
+}
+
+.language-info ul {
+    list-style: disc; /* Use 'disc' para bolinhas padrão ou 'none' se for estilizar manualmente */
+    font-size: 1rem;
+    margin-left: 20px; /* Recuo para listas */
+    margin-bottom: 20px;
+}
+
+.language-info ul li {
+    padding: 5px 0;
+}
+
+/* Estilo para blocos de código */
+.language-info pre {
+    background-color: #424147; /* Cor de fundo para o bloco de código, parecido com o header */
+    color: #f8f8f2; /* Cor do texto no código */
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto; /* Adiciona barra de rolagem horizontal se o código for muito longo */
+    font-family: 'VT323', monospace; /* Use a fonte VT323 que você importou para o código, ela é monospace e fica legal! */
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-left: 5px solid #49b146; /* Uma borda colorida para destaque */
+}
+
+/* Estilo para o texto dentro do código, caso você use <code> dentro de <pre> */
+.language-info pre code {
+    display: block; /* Garante que o code preencha o pre */
+    white-space: pre-wrap; /* Quebra linhas para código que é muito longo e não quer barra de rolagem horizontal */
+}
+
+/* Estilo para a imagem dentro do card */
+section.language-info img {
+    display: block; /* Faz a imagem se comportar como um bloco para centralizar com margin: auto */
+    background-color: #929292;
+    height: 230px;
+    width: 230px;
+    object-fit: contain; /* Garante que a imagem se ajuste dentro das dimensões sem cortar */
+    margin: 0 auto 30px auto; /* Centraliza a imagem e adiciona margem inferior */
+    border-radius: 12px;
+    padding: 15px; /* Adiciona um pouco de padding interno caso o logo não preencha tudo */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Links dentro do conteúdo */
+.language-info a {
+    color: #49b146; /* Cor do link */
+    text-decoration: none; /* Remove o sublinhado padrão */
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.language-info a:hover {
+    color: #388e3c; /* Cor mais escura ao passar o mouse */
+    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+}
+
 /* Transições */
 body,
 body * {
     transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease, transform 0.5s ease;
 }
 
-/* --- Novos estilos para a seção da linguagem --- */
-.language-info {
-    max-width: 800px;
-    margin: 40px auto 60px auto;
-    text-align: center;
-    background-color: #5f5e64;
-    padding: 30px 40px;
-    border-radius: 12px;
-    color: white;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-section.language-info img{
-    display: inline-flex;
-    background-color: #929292 ; 
-    height: 230px;
-    width: 230px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-}
-
-
-.language-info h1 {
-    font-weight: 700;
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-}
-
-.language-info p {
-    font-size: 1.15rem;
-    margin-bottom: 25px;
-    line-height: 1.5;
-}
-
-.language-info ul {
-    list-style: inside disc;
-    font-size: 1rem;
-    text-align: left;
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-.language-info ul li {
-    padding: 8px 0;
+/* Apenas para garantir que não haja erros de sintaxe no final */
+.settings-b{ /* Esta classe estava vazia no seu código original */
 }
