@@ -54,18 +54,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // === Lógica do Menu Hambúrguer e Dropdowns (Mobile) ===
     const menuToggle = document.querySelector('.menu-toggle');
-    const mainNavigationMenu = document.querySelector('.menu .main-nav-list'); // <--- ALTERADO AQUI!
+    const mainNavigationMenu = document.querySelector('.menu .main-nav-list');
     const dropHoverItems = document.querySelectorAll('.drop-hover > a'); // Seleciona o link <a> dentro de .drop-hover
 
     if (menuToggle && mainNavigationMenu) {
         menuToggle.addEventListener('click', () => {
             mainNavigationMenu.classList.toggle('active');
-            // Fechar todos os dropdowns quando o menu principal é fechado
-            if (!mainNavigationMenu.classList.contains('active')) {
-                document.querySelectorAll('.drop.active-drop').forEach(drop => {
-                    drop.classList.remove('active-drop');
-                });
-            }
+            // Fechar todos os dropdowns quando o menu principal é fechado ou aberto
+            document.querySelectorAll('.drop.active-drop').forEach(drop => {
+                drop.classList.remove('active-drop');
+            });
         });
     }
 
@@ -77,6 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 event.preventDefault(); // Previne a navegação padrão do link pai
                 const dropMenu = item.nextElementSibling; // Pega o div.drop ao lado do <a>
                 if (dropMenu && dropMenu.classList.contains('drop')) {
+                    // Fechar outros dropdowns abertos antes de abrir o atual
+                    document.querySelectorAll('.drop.active-drop').forEach(openDrop => {
+                        if (openDrop !== dropMenu) { // Não feche o que estamos tentando abrir
+                            openDrop.classList.remove('active-drop');
+                        }
+                    });
                     dropMenu.classList.toggle('active-drop'); // Alterna a classe para mostrar/esconder o dropdown
                 }
             }

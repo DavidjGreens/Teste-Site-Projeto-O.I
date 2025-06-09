@@ -450,6 +450,7 @@ body * {
         padding: 0 20px; /* Adiciona padding para o conteúdo da nav */
         position: relative; /* Para posicionar o menu-toggle e o menu ul */
         height: 60px; /* Altura para a barra de navegação no mobile */
+        z-index: 999; /* Garante que o nav.menu fique acima do main content */
     }
 
     /* Oculta os itens do menu principal em desktop */
@@ -458,15 +459,15 @@ body * {
     }
 
     /* Menu de Navegação (Menu Hambúrguer) */
-    .bottom-header nav.menu .main-nav-list { /* Usamos a classe específica agora */
+    .bottom-header nav.menu .main-nav-list {
         display: none; /* Esconde o menu principal por padrão no mobile */
         flex-direction: column;
         width: 100%; /* Ocupa a largura total */
-        max-height: calc(100vh - 60px); /* Ocupa o restante da tela verticalmente, subtraindo a altura do header mobile */
+        max-height: calc(100vh - 120px); /* Ajustado: 100vh - altura do cabeçalho total (~60px do top-header + ~60px do bottom-header) */
         overflow-y: auto; /* Adiciona scroll se o conteúdo for muito longo */
         text-align: center;
         position: fixed; /* Fixado na tela para rolar com o conteúdo */
-        top: 120px; /* Ajuste: abaixo do top-header e bottom-header */
+        top: 120px; /* Ajustado: Posiciona abaixo do cabeçalho completo (top-header + bottom-header) */
         left: 0;
         right: 0;
         background-color: #424147; /* Fundo do menu principal */
@@ -514,10 +515,9 @@ body * {
         color: #eee;
     }
 
-
     /* Esconde o caret-down no menu em dispositivos menores */
     .drop-hover a .bi-caret-down-fill {
-        display: none; /* Já estava, mas mantemos */
+        display: none;
     }
 
     /* Dropdown do menu em dispositivos menores */
@@ -546,11 +546,6 @@ body * {
         padding-bottom: 10px;
         opacity: 1;
     }
-    /* Para garantir que o dropdown aparece quando o menu principal está ativo */
-    .bottom-header nav.menu .main-nav-list.active .drop {
-        /* As regras acima para .drop.active-drop já deveriam aplicar */
-    }
-
 
     .drop a {
         padding: 12px 30px; /* Ajusta padding dos itens do dropdown */
