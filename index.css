@@ -31,12 +31,18 @@ header {
     background-color: #424147;
 }
 
-footer{
+footer {
     background-color: #49b146;
-    font-family:cursive;
+    font-family:cursive; /* Cuidado com fontes muito específicas, podem não carregar em todos os navegadores */
     font-size: 10px;
     padding: 20px;
     text-align: center;
+    color: #424147; /* Cor do texto no footer */
+}
+/* Estilo do footer para modo escuro */
+body.dark-mode footer {
+    background-color: #388e3c; /* Um verde um pouco mais escuro para o modo escuro */
+    color: #eee;
 }
 
 .top-header {
@@ -62,6 +68,9 @@ footer{
     border: 1px solid #424147;
     cursor: pointer;
     color: white;
+    display: inline-flex; /* Para centralizar o ícone */
+    align-items: center;
+    justify-content: center;
 }
 
 .top-header .social-links button:hover {
@@ -102,14 +111,15 @@ footer{
     width: 100%;
     max-height: 300px;
     overflow-y: auto;
-    display: none;
+    display: none; /* Esconde por padrão no desktop */
     transition: .3s;
     z-index: 10;
+    flex-direction: column; /* Garante que os itens do dropdown se empilhem */
 }
 
 /* Mostra o menu quando passa o mouse */
 .drop-hover:hover .drop {
-    display: block;
+    display: flex; /* Altera para flex para exibir no hover */
 }
 
 .drop-hover .drop a {
@@ -404,6 +414,197 @@ body * {
     transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease, transform 0.5s ease;
 }
 
-/* Apenas para garantir que não haja erros de sintaxe no final */
-.settings-b{ /* Esta classe estava vazia no seu código original */
+/* ==================================== */
+/* MEDIA QUERIES (RESPONSIVIDADE)       */
+/* ==================================== */
+
+/* Para telas menores que 768px (smartphones e tablets pequenos) */
+@media screen and (max-width: 768px) {
+    .interface {
+        padding: 0 2%; /* Reduzir o padding geral da interface */
+    }
+
+    /* HEADER */
+    .top-header {
+        flex-direction: column; /* Empilha logo e social links */
+        align-items: center; /* Centraliza itens empilhados */
+        gap: 15px; /* Espaço entre logo e social links */
+    }
+
+    .logotipo img {
+        max-width: 150px; /* Reduz o tamanho do logo */
+        height: auto;
+    }
+
+    .social-links button {
+        padding: 8px; /* Ajusta o padding dos botões de redes sociais */
+        font-size: 1.1em;
+    }
+
+    /* Menu de Navegação (Menu Hambúrguer) */
+    .menu ul {
+        display: none; /* Esconde o menu original por padrão em mobile */
+        flex-direction: column; /* Para quando o menu estiver aberto */
+        width: 100%;
+        text-align: center;
+        position: absolute; /* Posição absoluta para o menu aberto */
+        top: auto; /* Removido top fixo */
+        left: 0;
+        right: 0; /* Estende por toda a largura */
+        background-color: #424147; /* Cor de fundo para o menu aberto */
+        z-index: 999; /* Fica por cima do conteúdo, mas abaixo do settings */
+        padding: 20px 0;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        /* Ajuste a margem superior para aparecer abaixo do top-header. */
+        /* Pode ser calculado dinamicamente com JS ou usar um valor fixo que funcione. */
+        /* Para este HTML, ele deve aparecer abaixo da section.top-header */
+        margin-top: 100px; /* Valor aproximado da altura do top-header */
+    }
+    body.dark-mode .menu ul {
+        background-color: #2b2b2b; /* Cor no modo escuro */
+    }
+
+    .menu ul.active { /* Classe para mostrar o menu quando ativo */
+        display: flex;
+    }
+
+    .menu ul li {
+        margin: 10px 0; /* Espaçamento vertical entre os itens do menu */
+    }
+
+    .menu ul li a {
+        font-size: 1.1em;
+        padding: 10px;
+    }
+
+    /* Esconde o caret-down no menu em dispositivos menores */
+    .drop-hover a .bi-caret-down-fill {
+        display: none;
+    }
+
+    /* Dropdown do menu em dispositivos menores */
+    .drop {
+        position: static; /* Volta para o fluxo normal */
+        width: 100%;
+        box-shadow: none;
+        background-color: transparent; /* Sem fundo extra */
+        border-top: 1px solid rgba(255,255,255,0.1); /* Separador */
+        padding-top: 10px;
+        display: none; /* Esconde por padrão no mobile, só aparece com active-drop */
+    }
+    body.dark-mode .drop {
+        background-color: transparent;
+    }
+    .drop a {
+        padding: 8px 0; /* Ajusta padding dos itens do dropdown */
+        font-size: 1em;
+    }
+    /* CORREÇÃO CRUCIAL: Exibir o dropdown quando a classe active-drop é aplicada via JS */
+    .drop.active-drop {
+        display: flex !important; /* Força a exibição */
+        flex-direction: column;
+    }
+    /* CORREÇÃO PARA GARANTIR QUE O DROPDOWN APARECE QUANDO O MENU PRINCIPAL ESTÁ ATIVO */
+    .menu ul.active .drop {
+        /* Já definido como flex acima, mas esta regra garante se houver especificidade */
+        display: flex; /* Garante que o dropdown seja exibido quando o menu ul.active estiver ativo */
+        flex-direction: column;
+    }
+
+    /* Botão Hambúrguer */
+    .menu-toggle {
+        display: block; /* Mostra o botão hambúrguer */
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.8em;
+        cursor: pointer;
+        padding: 10px;
+        position: absolute;
+        right: 20px; /* Alinhado à direita */
+        top: 60px; /* Ajuste a posição para ficar abaixo da linha do logo/social-links */
+        z-index: 1001; /* Fica acima do menu e settings */
+    }
+    body.dark-mode .menu-toggle {
+        color: white;
+    }
+
+    /* Hero Section (index.html) */
+    .hero-section {
+        padding: 80px 15px; /* Reduz o padding */
+    }
+    .hero-section h1 {
+        font-size: 2em; /* Reduz o tamanho da fonte do título principal */
+    }
+    .hero-section p {
+        font-size: 1em; /* Reduz o tamanho da fonte do parágrafo */
+    }
+
+    /* Content Sections (index.html, sobre.html) */
+    .content-section {
+        padding: 30px 2%; /* Ajusta o padding */
+        margin-bottom: 30px;
+    }
+    .content-section h2 {
+        font-size: 1.8em; /* Reduz o tamanho do título da seção */
+    }
+
+    /* Feature Cards (index.html) */
+    .feature-cards {
+        grid-template-columns: 1fr; /* Um card por linha */
+    }
+
+    /* Member Cards (sobre.html) - Adaptado do seu código original */
+    /* Se for usar em sobre.html, você precisa definir os estilos de .team-container, .member-photo etc. */
+    /* aqui ou em um CSS separado para a página "sobre". */
+    /* Estou incluindo as que estavam no seu original: */
+    .team-container {
+        grid-template-columns: 1fr; /* Um card por linha */
+    }
+    .member-photo {
+        width: 120px; /* Reduz o tamanho da foto do membro */
+        height: 120px;
+    }
+    .member-desc {
+        min-height: auto; /* Remove altura mínima fixa se não for mais necessário */
+    }
+
+    /* Footer */
+    footer h1 { /* Se você mudar para <p> no HTML, lembre-se de mudar aqui para footer p */
+        font-size: 0.9em; /* Reduz o tamanho da fonte do copyright */
+    }
+}
+
+/* Para telas menores que 480px (smartphones muito pequenos) */
+@media screen and (max-width: 480px) {
+    .hero-section h1 {
+        font-size: 1.8em;
+    }
+    .hero-section p {
+        font-size: 0.9em;
+    }
+    .hero-button {
+        padding: 12px 25px;
+        font-size: 1em;
+    }
+    .content-section h2 {
+        font-size: 1.6em;
+    }
+    .content-section p {
+        font-size: 0.9em;
+    }
+    /* Estilos para sobre.html, se aplicável */
+    .member-card {
+        padding: 15px;
+    }
+    .member-name {
+        font-size: 1.1em;
+    }
+    .member-desc {
+        font-size: 0.85em;
+    }
+    .instagram-btn {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
 }

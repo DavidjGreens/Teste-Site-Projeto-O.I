@@ -60,8 +60,8 @@
         .content-section {
             padding: 40px 4%;
             text-align: center;
-            background-color: inherit;
-            color: inherit;
+            background-color: inherit; /* Herdará do body para se adaptar ao dark mode */
+            color: inherit; /* Herdará do body para se adaptar ao dark mode */
             margin-bottom: 50px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -86,7 +86,7 @@
             line-height: 1.6;
         }
 
-        .content-image { /* Estilo para a imagem de conteúdo */
+        .content-image {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
@@ -158,11 +158,12 @@
 </head>
 <body>
     <div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
-    </div>
-</div>  
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>  
+
     <header>
         <div class="settings-container">
             <button class="settings-button" aria-label="Abrir menu de configurações">
@@ -191,6 +192,8 @@
         <section class="bottom-header">
             <div class="interface">
                 <nav class="menu">
+                    <button class="menu-toggle" aria-label="Abrir menu">
+                        <i class="bi bi-list"></i> </button>
                     <ul>
                         <li><a href="index.html" class="active">HOME</a></li>
                         <li><a href="sobre.html">SOBRE NÓS</a></li>
@@ -219,7 +222,8 @@
             <a href="#main-content-start" class="hero-button">Comece a Explorar!</a> 
         </section>
 
-        <section id="main-content-start" class="content-section interface"> <h2>O Seu Guia Completo para o Mundo da Tecnologia</h2>
+        <section id="main-content-start" class="content-section interface">
+            <h2>O Seu Guia Completo para o Mundo da Tecnologia</h2>
             <p>Navegue por um conteúdo rico e detalhado sobre as **linguagens de programação** que moldam a web, os aplicativos e a inteligência artificial. Entenda seus fundamentos, aplicações e descubra qual delas é a ideal para o seu próximo projeto.</p>
             <p>Além disso, explore o fascinante universo das **engines de desenvolvimento**, ferramentas essenciais para criar jogos imersivos, simulações complexas e experiências interativas que desafiam a imaginação.</p>
             <img src="imagens/ifsc-campus-chapeco.jpg" alt="IFSC Campus Chapecó" class="content-image" />
@@ -231,7 +235,8 @@
                 <div class="feature-card">
                     <h3>Linguagens de Programação</h3>
                     <p>Conheça as sintaxes, os paradigmas e as aplicações das linguagens mais influentes do mercado. De Python a JavaScript, desvende os segredos do código.</p>
-                    <a href="html.html" class="feature-button">Ver Linguagens</a> </div>
+                    <a href="html.html" class="feature-button">Ver Linguagens</a>
+                </div>
                 <div class="feature-card">
                     <h3>Engines de Desenvolvimento</h3>
                     <p>Descubra as ferramentas que dão vida a jogos e aplicações interativas. Unity, Unreal Engine e muito mais, tudo em detalhes.</p>
@@ -247,64 +252,10 @@
     </main>
 
     <footer>
-        <h1>©2025 By DavidjGreens & Enzo Brancher</h1>
-    </footer>
+        <p>©2025 By DavidjGreens & Enzo Brancher</p> </footer>
 
     <script src="https://kit.fontawesome.com/0b6d1a1fba.js" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
-    <script>
-        // Script do tema e menu de configurações (seu script original)
-        document.addEventListener('DOMContentLoaded', function () {
-            const settingsContainer = document.querySelector('.settings-container');
-            const settingsButton = document.querySelector('.settings-button');
-            const settingsMenu = document.querySelector('.settings-menu');
-            const themeToggle = document.getElementById('theme-toggle');
-            const body = document.body;
-
-            let isMenuOpen = false;
-            let isDarkMode = false;
-
-            settingsButton.addEventListener('click', () => {
-                isMenuOpen = !isMenuOpen;
-                settingsMenu.classList.toggle('open');
-                settingsButton.classList.toggle('active', isMenuOpen);
-            });
-
-            themeToggle.addEventListener('click', () => {
-                isDarkMode = !isDarkMode;
-                body.classList.toggle('dark-mode', isDarkMode);
-                themeToggle.textContent = isDarkMode ? 'Tema Claro' : 'Tema Escuro';
-                localStorage.setItem('darkModeEnabled', isDarkMode);
-            });
-
-            (function loadThemePreference() {
-                const savedTheme = localStorage.getItem('darkModeEnabled');
-                if (savedTheme !== null) {
-                    isDarkMode = savedTheme === 'true';
-                    body.classList.toggle('dark-mode', isDarkMode);
-                    themeToggle.textContent = isDarkMode ? 'Tema Claro' : 'Tema Escuro';
-                }
-            })();
-
-            document.addEventListener('click', event => {
-                if (settingsContainer && !settingsContainer.contains(event.target) && isMenuOpen) {
-                    settingsMenu.classList.remove('open');
-                    settingsButton.classList.remove('active');
-                    isMenuOpen = false;
-                }
-            });
-
-            // Smooth scroll para o botão "Comece a Explorar!"
-            document.querySelector('.hero-button').addEventListener('click', function(e) {
-                e.preventDefault(); // Impede o comportamento padrão do link
-                const targetId = this.getAttribute('href'); // Pega o ID do alvo (ex: '#main-content-start')
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' }); // Rola suavemente até o elemento
-                }
-            });
-        });
-    </script>
+    <script src="script.js"></script> 
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
       new window.VLibras.Widget('https://vlibras.gov.br/app');
