@@ -94,15 +94,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 2. Carregar o tema salvo no localStorage ao carregar a página
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        applyTheme(savedTheme);
+
+    if (savedTheme === 'dark') { // Se o tema salvo for EXPLICITAMENTE 'dark'
+        applyTheme('dark');
+    } else if (savedTheme === 'light') { // Se o tema salvo for EXPLICITAMENTE 'light'
+        applyTheme('light');
     } else {
-        // Se não houver tema salvo, verifica a preferência do sistema
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            applyTheme('dark');
-        } else {
-            applyTheme('light'); // Aplica o tema claro como padrão se não houver preferência ou salvo
-        }
+        // Se NÃO houver tema salvo no localStorage, ou se o valor for nulo/inválido
+        // Aplicamos o tema claro como padrão.
+        // A preferência do sistema NÃO sobrescreve o padrão "claro" aqui.
+        applyTheme('light');
+        // Opcional: Para sempre salvar 'light' como padrão se nada foi salvo antes,
+        // você pode descomentar a linha abaixo. Isso faria com que, na primeira
+        // visita, 'light' fosse salvo e o site sempre iniciasse claro.
+        // localStorage.setItem('theme', 'light');
     }
 
     // 3. Event listener para alternar o tema
@@ -118,16 +123,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-});
-
-// Adicione este script no final do seu arquivo, caso já não tenha.
-// Ele é para o VLibras, não relacionado ao tema, mas é bom manter junto.
-// new window.VLibras.Widget('https://vlibras.gov.br/app'); // Este já está no HTML
-
-document.addEventListener('DOMContentLoaded', () => {
-    // ... (Mantenha todo o seu código script.js existente aqui) ...
 
     // --- Funcionalidade de Áudio (parar outros quando um começa a tocar) ---
+    // Esta parte foi mantida no final, mas dentro do mesmo DOMContentLoaded
+    // para evitar múltiplos listeners para o mesmo evento.
     const allAudios = document.querySelectorAll('.member-card audio');
 
     if (allAudios.length > 0) {

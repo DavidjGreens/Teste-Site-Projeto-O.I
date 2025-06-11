@@ -706,6 +706,8 @@ body * {
         align-items: center; /* Centraliza os cards */
         gap: 20px; /* Reduz o espaçamento entre eles no mobile */
         padding: 20px 4%; /* Ajusta o padding para mobile */
+        max-width: 95%; /* Permite que o container ocupe mais largura da tela */
+        margin: 0 auto; /* Centraliza o container de cards */
     }
 
     /* Ajustes para cada feature-card individualmente */
@@ -866,118 +868,114 @@ body.dark-mode .member-card audio::-moz-range-thumb {
 
 /* --- INÍCIO: ALTERAÇÕES FOCADAS NOS CARDS DE MEMBROS --- */
 
-/* Container geral para os cards de membros */
+/* Container geral para os cards de membros - TEMA CLARO PADRÃO */
 .member-cards-container {
-    display: flex; /* Usa flexbox para organizar os cards */
-    flex-wrap: wrap; /* Permite que os cards quebrem para a próxima linha em telas menores */
-    gap: 30px; /* Espaço entre os cards, como nas imagens */
-    justify-content: center; /* Centraliza os cards no container, como nas imagens */
-    padding: 40px 2%; /* Adiciona um padding geral ao container para afastamento das bordas */
-    max-width: 1280px; /* Limita a largura do container para centralizar o bloco de cards */
-    margin: 50px auto; /* Centraliza o container de cards horizontalmente e adiciona margem superior */
-    background-color: #222; /* Fundo escuro para o container de cards de membros, como nas imagens */
-    padding-bottom: 70px; /* Adiciona padding na parte inferior do container para afastar do footer, como nas imagens */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    padding: 40px 2%;
+    max-width: 1280px;
+    margin: 50px auto;
+    background-color: #f8f8f8; /* Fundo CLARO para o container no tema CLARO (mesmo do body) */
+    padding-bottom: 70px;
 }
 
-/* Estilos para cada card de membro individual */
+/* Estilos para cada card de membro individual - TEMA CLARO PADRÃO */
 .member-card {
-    background-color: #424147; /* Cor de fundo do card, como nas imagens */
-    border-radius: 10px; /* Bordas arredondadas, como nas imagens */
-    padding: 30px; /* Espaçamento interno, como nas imagens */
-    text-align: center; /* Centraliza o texto e elementos dentro do card, como nas imagens */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra para profundidade */
+    background-color: #f0f0f0 !important; /* FORÇANDO O CINZA CLARO */
+    color: #333 !important; /* FORÇANDO O TEXTO ESCURO */
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Sombra suave para o tema claro */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex; /* Usa flexbox para alinhar conteúdo verticalmente */
-    flex-direction: column; /* Organiza itens em coluna */
-    align-items: center; /* Centraliza itens horizontalmente */
-    width: calc(25% - 22.5px); /* 4 cards por linha com gap de 30px (4 * 30 / 4 = 22.5) */
-    min-width: 250px; /* Largura mínima para evitar que fiquem muito pequenos, ajustado para 4 cards */
-    max-width: 280px; /* Largura máxima para manter consistência */
-    height: auto; /* Altura automática para se ajustar ao conteúdo */
-    margin: 0; /* Remove margem externa que pode causar desalinhamento com flexbox */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(25% - 22.5px);
+    min-width: 250px;
+    max-width: 280px;
+    height: auto;
+    margin: 0;
 }
 
-/* Efeito hover para os cards de membros */
+/* Efeito hover para os cards de membros - TEMA CLARO PADRÃO */
 .member-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
-/* Modo escuro para os cards de membros (já que o container tem fundo escuro, os cards ficam mais claros) */
+/* Descrição/função do membro - TEMA CLARO PADRÃO */
+.member-desc {
+    font-size: 0.9em;
+    color: #888; /* Cor de texto mais suave para o tema CLARO */
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+/* Estilos para o Player de Áudio nos Member Cards - TEMA CLARO PADRÃO */
+.member-card audio {
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    height: 30px;
+    background-color: #e0e0e0; /* Cor de fundo no tema CLARO */
+    border-radius: 5px;
+    outline: none;
+}
+.member-card audio::-webkit-media-controls-panel {
+    background-color: #49b146; /* Cor do painel de controle (verde) */
+    color: #424147; /* Cor do texto/ícones (escuro) */
+}
+.member-card audio::-webkit-media-controls-volume-slider::-webkit-slider-thumb {
+    background-color: #424147;
+}
+.member-card audio::-moz-range-thumb {
+    background-color: #424147;
+}
+
+
+/* ------------------ INÍCIO: TEMA ESCURO PARA OS CARDS DE MEMBROS ------------------ */
+
+body.dark-mode .member-cards-container {
+    background-color: #222 !important; /* Fundo escuro para o container dos cards no modo escuro */
+}
+
 body.dark-mode .member-card {
-    background-color: #424147; /* Mantém a cor do card para contraste no modo escuro */
-    color: #eee; /* Cor do texto clara no modo escuro */
+    background-color: #424147 !important; /* Cor de fundo do card no TEMA ESCURO (seu cinza escuro original) */
+    color: #eee !important; /* Cor do texto clara no modo escuro */
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
 }
 
-/* Imagens de perfil dos membros */
-.member-card img {
-    width: 120px; /* Tamanho do avatar, como nas imagens */
-    height: 120px; /* Altura do avatar, como nas imagens */
-    border-radius: 50%; /* Faz a imagem ser redonda, como nas imagens */
-    object-fit: cover; /* Garante que a imagem preencha o círculo sem distorcer */
-    margin-bottom: 15px; /* Espaço abaixo da imagem, como nas imagens */
-    border: 3px solid #49b146; /* Borda verde ao redor do avatar, como nas imagens */
+body.dark-mode .member-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5); /* Mantém a sombra mais forte no dark mode hover */
 }
 
-/* Nome do membro */
-.member-name {
-    font-size: 1.5em; /* Tamanho do nome, como nas imagens */
-    font-weight: 600; /* Negrito para o nome */
-    color: #49b146; /* Cor verde para o nome, como nas imagens */
-    margin-bottom: 5px; /* Pequeno espaço abaixo do nome */
-    text-transform: capitalize; /* Capitaliza as primeiras letras, se necessário */
-}
 body.dark-mode .member-name {
     color: #49b146; /* Mantém a cor verde no dark mode */
 }
 
-/* Descrição/função do membro */
-.member-desc {
-    font-size: 0.9em; /* Tamanho da descrição, como nas imagens */
-    color: #ccc; /* Cor de texto mais suave, como nas imagens */
-    margin-bottom: 20px; /* Espaço abaixo da descrição */
-    line-height: 1.4;
-}
 body.dark-mode .member-desc {
-    color: #ccc; /* Mantém a cor mais suave no dark mode */
+    color: #ccc; /* Cor de texto mais suave no dark mode */
 }
 
-/* Botão do Instagram */
-.instagram-btn {
-    display: flex; /* Usa flexbox para alinhar ícone e texto */
-    align-items: center; /* Centraliza verticalmente o conteúdo */
-    justify-content: center; /* Centraliza horizontalmente o conteúdo */
-    background-color: #49b146; /* Cor de fundo do botão, como nas imagens */
-    color: #424147; /* Cor do texto do botão, como nas imagens */
-    padding: 10px 20px; /* Padding interno do botão, como nas imagens */
-    border-radius: 25px; /* Bordas arredondadas para o botão, como nas imagens */
-    text-decoration: none; /* Remove sublinhado */
-    font-weight: 500;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    margin-top: auto; /* Empurra o botão para o final do card */
-    width: 100%; /* Ocupa a largura total do card */
+body.dark-mode .member-card audio {
+    background-color: #333; /* Fundo mais escuro para o player */
 }
 
-body.dark-mode .instagram-btn {
+body.dark-mode .member-card audio::-webkit-media-controls-panel {
     background-color: #388e3c; /* Verde mais escuro no dark mode */
-    color: #eee; /* Texto claro no dark mode */
+    color: #eee;
 }
 
-.instagram-btn:hover {
-    background-color: #3a8e34; /* Verde mais escuro no hover */
-    color: white;
+body.dark-mode .member-card audio::-webkit-media-controls-volume-slider::-webkit-slider-thumb {
+    background-color: #eee;
 }
 
-body.dark-mode .instagram-btn:hover {
-    background-color: #218838; /* Verde ainda mais escuro no hover do dark mode */
-    color: white;
+body.dark-mode .member-card audio::-moz-range-thumb {
+    background-color: #eee;
 }
 
-.instagram-btn i {
-    margin-right: 8px; /* Espaço entre o ícone e o texto, como nas imagens */
-    font-size: 1.2em; /* Tamanho do ícone */
-}
-
-/* --- FIM: ALTERAÇÕES FOCADAS NOS CARDS DE MEMBROS --- */
-
+/* ------------------ FIM: TEMA ESCURO PARA OS CARDS DE MEMBROS ------------------ */
